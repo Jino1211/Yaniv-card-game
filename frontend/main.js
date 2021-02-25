@@ -1,3 +1,4 @@
+"use strict";
 const players = [];
 const suits = ["spades", "diamonds", "clubs", "hearts"];
 const ranks = [
@@ -43,20 +44,7 @@ class Deck {
   shuffle() {
     this.deck.sort(() => Math.random() - 0.5);
   }
-
-  InitDividingCards(numberOfPlayer) {
-    if (numberOfPlayer > 10) {
-      console.log("To many players");
-      return;
-    }
-
-    for (let i = 0; i < numberOfPlayer; i++) {
-      new PlayerDeck(i, this);
-    }
-    return players;
-  }
 }
-let b = new Deck();
 
 class PlayerDeck extends Deck {
   constructor(playerId, deck) {
@@ -67,19 +55,53 @@ class PlayerDeck extends Deck {
       this.myHand.push(deck.deck.pop());
     }
     delete this.deck;
-    players.push(this);
+    players[this.id] = this;
   }
+
+  playCard(card) {
+    let dropCard;
+    for (let i = 0; i < this.myHand.length; i++) {
+      if (card == this.myHand[i]) {
+        dropCard = this.myHand[i];
+        console.log(this.myHand[i]);
+        splice(this.myHand[i], 1);
+      }
+    }
+    return dropCard;
+  }
+}
+
+class PileDeck extends Deck {
+  constructor(deck) {}
 }
 
 class TableDeck extends Deck {
-  constructor(deck) {
-    super(deck);
+  constructor() {
+    super();
+
+    // this.deck = deck
   }
 
-  drawCard(player) {
-    player.myHand.push(this.deck(pop));
+  InitDividingCards(numberOfPlayer) {
+    if (numberOfPlayer > 10) {
+      console.log("To many players");
+      return;
+    }
+
+    for (let i = 0; i < numberOfPlayer; i++) {
+      new PlayerDeck(i, this);
+    }
+  }
+
+  drawCard(playerId) {
+    players[playerId].myHand.push(this.deck(pop));
   }
 }
-b.shuffle();
-b.InitDividingCards(4);
-console.log(players[0]);
+
+let t = new TableDeck();
+t.shuffle();
+t.InitDividingCards(3);
+
+let d = { suit: "clubs", rank: "6", isJoker: false };
+console.log(players[2]);
+console.log(players[2].playCard(d));
