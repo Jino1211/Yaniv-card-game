@@ -1,18 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <link rel="stylesheet" href="./style/style.css" />
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Yaniv game card</title>
   </head>
   <body>
+    <button class="bts" id="start">Start game</button>
+    <form action="" id="pre-game-form"></form>
     <div id="game-field">
-      <div class="players" id="player1"></div>
-      <div class="players" id="player2"></div>
-      <div class="players" id="player3"></div>
-      <div class="players" id="player4"></div>
+      <div class="players" id="p1"></div>
+      <div class="players" id="p2"></div>
+      <div class="players" id="p3"></div>
+      <div class="players" id="p4"></div>
+
+      <div id="dealer">
+        <span id="pile-deck"></span>
+      </div>
     </div>
-    <script src="/frontend/main.js"></script>
+    <script type="module" src="./js/main.js"></script>
   </body>
 </html>

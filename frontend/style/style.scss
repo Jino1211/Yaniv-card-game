@@ -1,3 +1,87 @@
 * {
   margin: 0%;
 }
+form {
+  width: fit-content;
+  margin: auto;
+  align-self: center;
+  position: relative;
+  top: 15em;
+  #num-of-player {
+    height: 2em;
+  }
+  button {
+    height: 2.5em;
+  }
+}
+body {
+  background-color: rgba(1, 80, 1, 0.767);
+  #start {
+    position: relative;
+    left: 35em;
+    top: 18em;
+    width: fit-content;
+    height: 2em;
+  }
+}
+img {
+  display: block;
+}
+#game-field {
+  display: grid;
+  grid-template-columns: auto auto auto auto auto;
+  grid-template-rows: 10em 10em 10em 10em 10em;
+  align-content: center;
+  .bts {
+    color: green;
+  }
+
+  .players {
+    border: 0.4em solid lightseagreen;
+    // display: inline-block;
+    margin: 1%;
+    text-align: center;
+    display: inline-grid;
+  }
+  #p1 {
+    grid-column-start: 2;
+    grid-column-end: span 3;
+    grid-row-start: 1;
+    grid-row-end: 1;
+    grid-template-columns: auto auto auto auto auto;
+    grid-template-rows: auto;
+    align-content: center;
+    // width: 60vw;
+    // margin: auto;
+  }
+  #p2 {
+    grid-column-start: 1;
+    grid-column-end: 1;
+    grid-row-start: 2;
+    grid-row-end: span 3;
+    // height: 60vh;
+    // width: fit-content;
+  }
+  #p3 {
+    grid-column-start: 5;
+    grid-column-end: 5;
+    grid-row-start: 2;
+    grid-row-end: span 3;
+  }
+  #p4 {
+    grid-column-start: 2;
+    grid-column-end: span 3;
+    grid-row-start: 5;
+    grid-row-end: 5;
+    grid-template-columns: auto auto auto auto auto;
+    grid-template-rows: auto;
+    align-content: center;
+  }
+  #dealer {
+    grid-column-start: 3;
+    grid-column-end: 3;
+    grid-row-start: 3;
+    grid-row-end: 3;
+    text-align: center;
+  }
+}

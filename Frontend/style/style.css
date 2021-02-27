@@ -1,4 +1,127 @@
 * {
   margin: 0%;
 }
+
+form {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin: auto;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  position: relative;
+  top: 15em;
+}
+
+form #num-of-player {
+  height: 2em;
+}
+
+form button {
+  height: 2.5em;
+}
+
+body {
+  background-color: rgba(1, 80, 1, 0.767);
+}
+
+body #start {
+  position: relative;
+  left: 35em;
+  top: 18em;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: 2em;
+}
+
+img {
+  display: block;
+}
+
+#game-field {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: auto auto auto auto auto;
+      grid-template-columns: auto auto auto auto auto;
+  -ms-grid-rows: 10em 10em 10em 10em 10em;
+      grid-template-rows: 10em 10em 10em 10em 10em;
+  -ms-flex-line-pack: center;
+      align-content: center;
+}
+
+#game-field .bts {
+  color: green;
+}
+
+#game-field .players {
+  border: 0.4em solid lightseagreen;
+  margin: 1%;
+  text-align: center;
+  display: -ms-inline-grid;
+  display: inline-grid;
+}
+
+#game-field #p1 {
+  -ms-grid-column: 2;
+      grid-column-start: 2;
+  -ms-grid-column-span: 3;
+      grid-column-end: span 3;
+  -ms-grid-row: 1;
+      grid-row-start: 1;
+  grid-row-end: 1;
+  -ms-grid-columns: auto auto auto auto auto;
+      grid-template-columns: auto auto auto auto auto;
+  -ms-grid-rows: auto;
+      grid-template-rows: auto;
+  -ms-flex-line-pack: center;
+      align-content: center;
+}
+
+#game-field #p2 {
+  -ms-grid-column: 1;
+      grid-column-start: 1;
+  grid-column-end: 1;
+  -ms-grid-row: 2;
+      grid-row-start: 2;
+  -ms-grid-row-span: 3;
+      grid-row-end: span 3;
+}
+
+#game-field #p3 {
+  -ms-grid-column: 5;
+      grid-column-start: 5;
+  grid-column-end: 5;
+  -ms-grid-row: 2;
+      grid-row-start: 2;
+  -ms-grid-row-span: 3;
+      grid-row-end: span 3;
+}
+
+#game-field #p4 {
+  -ms-grid-column: 2;
+      grid-column-start: 2;
+  -ms-grid-column-span: 3;
+      grid-column-end: span 3;
+  -ms-grid-row: 5;
+      grid-row-start: 5;
+  grid-row-end: 5;
+  -ms-grid-columns: auto auto auto auto auto;
+      grid-template-columns: auto auto auto auto auto;
+  -ms-grid-rows: auto;
+      grid-template-rows: auto;
+  -ms-flex-line-pack: center;
+      align-content: center;
+}
+
+#game-field #dealer {
+  -ms-grid-column: 3;
+      grid-column-start: 3;
+  grid-column-end: 3;
+  -ms-grid-row: 3;
+      grid-row-start: 3;
+  grid-row-end: 3;
+  text-align: center;
+}
 /*# sourceMappingURL=style.css.map */
