@@ -1,5 +1,6 @@
 "use strict";
 import { suits, imgSrcs, ranks } from "./cards.js";
+// import { Players, Card, PlayerDeck, PileDeck, TableDeck } from "./classes.js";
 const startBtn = getElemFromDom("#start");
 
 function createNewDeck() {
@@ -22,7 +23,12 @@ class Players {
       const hand = players[i].myHand;
       for (let j = 0; j < hand.length; j++) {
         const domPlayer = getElemFromDom(`#p${i}`);
-        const img = createElementOnDom("img", "src", hand[j].imgSrc, domPlayer);
+        const img = createElementOnDom(
+          "img",
+          "src",
+          `cards-svg/${hand[j].imgSrc}`,
+          domPlayer
+        );
         addAnotherAttribute(img, "class", "card");
         addAnotherAttribute(img, "alt", `${hand[j].rank} ${hand[j].suit}`);
       }
@@ -37,9 +43,9 @@ class Card {
     this.rank = rank;
     this.isJoker = isJoker;
     if (!isJoker) {
-      this.imgSrc = `${rank}${imgSrc}.jpg`;
+      this.imgSrc = `${rank}${imgSrc}`;
     } else {
-      this.imgSrc = `${imgSrc}.jpg`;
+      this.imgSrc = `${imgSrc}`;
     }
   }
 }
@@ -98,7 +104,12 @@ class PileDeck extends Deck {
     }
     this.deck[this.deck.length - 1] = card;
     const parent = getElemFromDom("#dealer");
-    const onDom = createElementOnDom("img", "src", card.imgSrc, parent);
+    const onDom = createElementOnDom(
+      "img",
+      "src",
+      `cards-svg/${card.imgSrc}`,
+      parent
+    );
     addAnotherAttribute(onDom, "class", "card");
     addAnotherAttribute(onDom, "alt", `${card.rank} ${card.suit}`);
     players.firstMove();
@@ -112,7 +123,7 @@ class TableDeck extends Deck {
     // this.deck = deck
   }
 
-  InitDividingCards(numberOfPlayer) {
+  InitGame(numberOfPlayer) {
     if (numberOfPlayer > 10) {
       console.log("To many players");
       return;
@@ -124,6 +135,14 @@ class TableDeck extends Deck {
 
     const pileDeck = new PileDeck(this.deck.pop());
     pileDeck.insertToPile();
+    const tableBack = createElementOnDom(
+      "img",
+      "src",
+      `cards-svg/Card_back`,
+      getElemFromDom("#dealer")
+    );
+    addAnotherAttribute(tableBack, "alt", "back deck");
+    addAnotherAttribute(tableBack, "class", "card");
   }
 
   drawCard(playerId) {
@@ -144,7 +163,11 @@ function createElementOnDom(
   holder
 ) {
   let onDom = document.createElement(element);
-  onDom.setAttribute(attribute, attributeValue);
+  if ((element === "img") & (parent.id === "p2" || parent.id === "p3")) {
+    onDom.setAttribute(attribute, `${attributeValue}R.svg`);
+  } else {
+    onDom.setAttribute(attribute, `${attributeValue}.svg`);
+  }
 
   if (text) onDom.innerText = text;
 
@@ -153,8 +176,18 @@ function createElementOnDom(
   }
 
   parent.append(onDom);
+  // if (element === "img") addEventToCard();
   return onDom;
 }
+
+// function rotateCard(img) {
+//   img.style.transform = "rotate(90deg)";
+//   img.style.width = "110%";
+//   img.style.height = "13%";
+// }
+// function addEventToCard(img) {
+//   img.addEventListener("click", () => {});
+// }
 
 function hideElement(element) {
   element.style.visibility = "hidden";
@@ -187,7 +220,7 @@ startBtn.addEventListener("click", () => {
   confirmBtn.addEventListener("click", (e) => {
     e.preventDefault();
     tableDeck.shuffle();
-    tableDeck.InitDividingCards(numOfPlayer.value);
+    tableDeck.InitGame(numOfPlayer.value);
     hideElement(numOfPlayer);
     hideElement(confirmBtn);
   });
@@ -196,11 +229,3 @@ startBtn.addEventListener("click", () => {
 function addAnotherAttribute(element, attribute, attributeValue) {
   element.setAttribute(attribute, attributeValue);
 }
-// function insertCard()
-// function convertCardToImg(card) {}
-// t.shuffle();
-// t.InitDividingCards(3);
-
-// let d = { suit: "hearts", rank: "3", isJoker: false };
-// console.log(players[2]);
-// console.log(players[2].playCard(d));
